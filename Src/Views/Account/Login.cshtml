@@ -1,0 +1,63 @@
+@model Src.Models.ViewModels.Login.LoginVm
+
+<div class="row">
+    <div class="col-md-8">
+        <section>
+         <div class="card card-body">
+                <form id="account" method="post" asp-action="Login" asp-controller="Account">
+                <h4>Use Your regsitered eamil id password to login</h4>
+                <hr />
+                <div asp-validation-summary="ModelOnly" ></div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2" asp-for="UserName"></label>
+                    <div class="col-md-10">
+                        <input asp-for="UserName" class="form-control col-md-10" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2" asp-for="Password"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-6  checkbox">
+                        <label class="pr-2 pl-1" asp-for="RemmberMe">
+                            <input asp-for="RemmberMe" />
+                        </label>
+                        Remmber Me?
+                    </div>
+                </div>
+
+                <div class="form-group ">
+
+                    <p class="col-md-6 ">
+                        <a asp-action="Register">Do not Have Account?</a>
+                    </p>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Log in" class="btn btn-primary">
+                </div>
+
+            </form>
+         </div>
+        </section>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial.cshtml"></partial> 
+}

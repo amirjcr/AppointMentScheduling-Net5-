@@ -1,0 +1,71 @@
+@model Src.Models.ViewModels.Register.RegisterVm;
+
+
+<div class="row">
+    <div class="card card-body">
+        <h2>Sign Up</h2>
+        <form method="POST" asp-action="Register">
+            <h4>Create a new account</h4>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label class="col-md-2" asp-for="Name"></label>
+                <div class="col-md-10">
+                    <input asp-for="Name" class="form-control col-md-10" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+              <div class="form-group">
+                <label class="col-md-2" asp-for="Email"></label>
+                <div class="col-md-10">
+                    <input asp-for="Email" class="form-control col-md-10" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+
+              <div class="form-group">
+                <label class="col-md-2" asp-for="Password"></label>
+                <div class="col-md-10">
+                    <input asp-for="Password" class="form-control col-md-10" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+              <div class="form-group">
+                <label class="col-md-2" asp-for="ConfirmPasswore"></label>
+                <div class="col-md-10">
+                    <input asp-for="ConfirmPasswore" class="form-control col-md-10" />
+                    <span asp-validation-for="ConfirmPasswore" class="text-danger"></span>
+                </div>
+            </div>
+
+              <div class="form-group">
+                <label class="col-md-2" asp-for="RoleName"></label>
+                <div class="col-md-10">
+                    <select asp-for="RoleName" asp-items="@Helper.GetrolesForDropDown()" class="form-control col-md-10">
+                        <option value="0">
+                            -- Select One the Roles --
+                        </option>
+                    </select>
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            
+                <div class="form-group">
+                    <input type="submit" value="Sgin in" class="btn btn-primary">
+                </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

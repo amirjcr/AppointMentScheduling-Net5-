@@ -1,0 +1,12 @@
+<div class="mb-3 mt-2">
+   @if (User.IsInRole(Helper.Admin))
+   {
+      @await Component.InvokeAsync("DocsListViewComponent");
+   }
+
+</div>
+<div class="row col-12">
+   <div id='calendar' class="w-100 h-100"></div>
+</div>
+
+<partial name="_AddOrEditAppointmentPartial"></partial>

@@ -1,0 +1,17 @@
+@inject SignInManager<Src.Models.CustomizeIdentity.ApplicationUser> _signInManager
+@if (_signInManager.IsSignedIn(User))
+{
+    <form id="LogoutForm" asp-action="LoggOut" asp-controller="Account" method="POST">
+        <ul class="nav nav-navbar">
+            <li class="nav-item mr-3 ml-3">Hello @User.Identity.Name</li>
+            <li class="nav-item"><a href="javascript:document.getElementById('LogoutForm').submit()"> LoggOut</a></li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav  nav-navbar">
+        <li class="nav-item mr-3"><a asp-action="Login" asp-controller="Account" id="loginLink"> Login</a></li>
+        <li lass="nav-item ml-3"><a asp-action="Register" asp-controller="Account" id="RegisterLink">Register</a></li>
+    </ul>
+}

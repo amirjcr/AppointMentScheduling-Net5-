@@ -1,0 +1,11 @@
+@model List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>
+
+
+<section>
+    <div class="form-group">
+        <select asp-items="Model" class="form-control" id="doctorId" onchange="onDoctorChnage()">
+            <option value="0">select from bellow</option>
+        </select>
+    </div>
+
+</section>

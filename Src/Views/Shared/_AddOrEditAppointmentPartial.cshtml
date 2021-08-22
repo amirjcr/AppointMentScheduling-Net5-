@@ -1,0 +1,94 @@
+@using Microsoft.AspNetCore.Mvc.Rendering;
+
+
+<div class="modal fade" role="dialog" id="appointmentInput" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="appointmentform" autocomplete="off" novalidate="novalidate">
+                <div class="modal-header">
+                    @if (User.IsInRole(Helper.Admin))
+                    {
+                        <h4 class="modal-titel">Add/Edit Appointment</h4>
+                    }
+                    else
+                    {
+                        <h4 class="modal-titel">Appointment Details</h4>
+                    }
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" maxlength="100" class="form-control" id="title" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description ">Description</label>
+                        <textarea type="text" class="form-control" id="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appointingdate ">Start Datetime</label>
+                        <input type="text" class="form-control" id="appointingdate" />
+                    </div>
+
+                    @if (User.IsInRole(Helper.Admin))
+                    {
+                        <div class="form-group">
+                            <label for="patientid ">Select Patient</label>
+                            <select type="text" class="form-control" id="patientid"
+                            asp-items="@(new SelectList(ViewBag.PatientList,"Id","Name"))"></select>
+                        </div>
+                    }
+                    else if (User.IsInRole(Helper.Doctor))
+                    {
+                        <div class="form-group">
+                            <label for="lblPatietName">Patient Name</label>
+                            <label class="form-control" disabled id="lblPatietName"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lblstatus">Status</label>
+                            <label class="form-control" disabled id="lblstatus"></label>
+                        </div>
+                    }
+                    else if (User.IsInRole(Helper.Patient))
+                    {
+                        <div class="form-group">
+                            <label for="lbldoctorName">Doctor Name</label>
+                            <label class="form-control" disabled id="lbldoctorName"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lblstatus">Status</label>
+                            <label class="form-control" disabled id="lblstatus"></label>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label for="duration">duratin</label>
+                        <select class="form-control" id="duration" asp-items="ViewBag.Duration"></select>
+                    </div>
+
+
+                    <input type="hidden" id="Id">
+                </div>
+
+                <div class="modal-footer">
+                    @if (User.IsInRole(Helper.Admin))
+                    {
+                        <button id="btnDelete" class="btn btn-danger" onclick="onDeleteAppointment()">Delete</button>
+                        <button  id="btnSubmit" class="btn btn-primary" onclick="onSubmitForm()">Add Or Edit</button>
+                    }
+                    else if (User.IsInRole(Helper.Doctor))
+                    {
+                        <button id="btnDelete" onclick="onDeleteAppointment()" class="btn btn-danger">Delete</button>
+                        <button id="btnConfirm" class="btn btn-primary" onclick="onConfirmAppointment()">confirm</button>
+                    }
+                    <button class="btn btn-secondary" onclick="closemodal()">Close</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
